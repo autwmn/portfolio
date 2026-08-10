@@ -1,0 +1,321 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   AUTUMN JOYNER — EDITORIAL BASE
+   Cormorant Garamond (display) · DM Sans (body) · Caveat (notes)
+   ============================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #f5f1e8;
+}
+
+body {
+  background-color: #f5f1e8;
+  color: #302f2b;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 300;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ---------- Typography ---------- */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Cormorant Garamond', Garamond, serif;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  font-synthesis-weight: none;
+}
+
+h5,
+h6 {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 500;
+}
+
+p {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 300;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Hero display — 110–160px on desktop */
+.display-hero {
+  font-family: 'Cormorant Garamond', Garamond, serif;
+  font-weight: 300;
+  font-size: clamp(4.25rem, 13vw, 9.75rem);
+  line-height: 0.82;
+  letter-spacing: -0.045em;
+}
+
+/* Section titles — 70–110px */
+.display-section {
+  font-family: 'Cormorant Garamond', Garamond, serif;
+  font-weight: 300;
+  font-size: clamp(3rem, 8vw, 6.875rem);
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+}
+
+/* Secondary editorial headings — 36–60px */
+.display-sub {
+  font-family: 'Cormorant Garamond', Garamond, serif;
+  font-weight: 300;
+  font-size: clamp(2rem, 4vw, 3.75rem);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+}
+
+/* High-fashion accent — use sparingly, single words */
+.fashion {
+  font-family: 'Bodoni Moda', 'Cormorant Garamond', serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* Editorial italic phrases */
+.editorial-italic {
+  font-family: 'Cormorant Garamond', Garamond, serif;
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+
+/* Tiny uppercase labels — 11–13px */
+.eyebrow {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.eyebrow-xs {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Annotations only — arrows, notes, 2–5 words */
+.handwritten {
+  font-family: 'Caveat', cursive;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+
+/* ---------- Paper & texture ---------- */
+
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
+}
+
+.paper {
+  background-color: #f0ebdf;
+  background-image: radial-gradient(
+      ellipse at 20% 15%,
+      rgba(255, 255, 255, 0.55),
+      transparent 55%
+    ),
+    radial-gradient(ellipse at 85% 90%, rgba(140, 136, 118, 0.09), transparent 60%);
+}
+
+.paper-shadow {
+  box-shadow: 0 1px 1px rgba(48, 47, 43, 0.05), 0 10px 26px -12px rgba(48, 47, 43, 0.28),
+    0 2px 5px -3px rgba(48, 47, 43, 0.16);
+}
+
+.paper-shadow-soft {
+  box-shadow: 0 14px 40px -22px rgba(48, 47, 43, 0.4);
+}
+
+/* Torn paper edges — irregular, never a rounded rectangle */
+.torn-bottom {
+  clip-path: polygon(
+    0% 0%, 100% 0%, 100% 93%, 96% 97%, 91% 92%, 86% 98%, 80% 93%, 74% 99%,
+    68% 94%, 62% 98%, 55% 93%, 49% 99%, 42% 94%, 36% 98%, 30% 93%, 24% 99%,
+    18% 94%, 12% 98%, 6% 93%, 0% 98%
+  );
+}
+
+.torn-all {
+  clip-path: polygon(
+    2% 3%, 12% 0%, 27% 4%, 41% 1%, 56% 5%, 71% 1%, 86% 4%, 98% 1%,
+    100% 14%, 97% 29%, 100% 44%, 96% 59%, 100% 73%, 97% 88%, 99% 99%,
+    86% 96%, 71% 100%, 57% 96%, 42% 99%, 28% 95%, 13% 99%, 1% 96%,
+    3% 82%, 0% 67%, 4% 52%, 0% 37%, 3% 22%
+  );
+}
+
+.torn-right {
+  clip-path: polygon(
+    0% 0%, 95% 0%, 99% 8%, 94% 17%, 100% 26%, 95% 35%, 99% 45%, 94% 54%,
+    100% 63%, 95% 72%, 99% 81%, 94% 90%, 98% 100%, 0% 100%
+  );
+}
+
+/* Masking tape */
+.tape {
+  position: absolute;
+  width: 88px;
+  height: 26px;
+  background: rgba(214, 205, 189, 0.75);
+  box-shadow: 0 1px 3px rgba(48, 47, 43, 0.12);
+  backdrop-filter: saturate(0.9);
+  clip-path: polygon(2% 12%, 98% 0%, 100% 84%, 0% 100%);
+}
+
+/* Irregular organic sage shapes */
+.blob-a {
+  border-radius: 62% 38% 44% 56% / 48% 58% 42% 52%;
+}
+
+.blob-b {
+  border-radius: 40% 60% 66% 34% / 62% 38% 62% 38%;
+}
+
+.blob-c {
+  border-radius: 55% 45% 33% 67% / 39% 61% 39% 61%;
+}
+
+/* ---------- Editorial controls ---------- */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.95rem;
+  border-radius: 999px;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.45s cubic-bezier(0.22, 1, 0.36, 1), transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pill-solid {
+  background-color: #8e907c;
+  color: #f5f1e8;
+}
+
+.pill-solid:hover {
+  background-color: #616757;
+}
+
+.pill-ghost {
+  background-color: transparent;
+  color: #616757;
+  border: 1px solid rgba(97, 103, 87, 0.4);
+}
+
+.pill-ghost:hover {
+  background-color: rgba(164, 168, 148, 0.22);
+  border-color: rgba(97, 103, 87, 0.7);
+}
+
+/* Pencil underline mark — painted on the element so it never fights
+   a positioning utility applied to the same node. */
+.pencil-underline {
+  padding-bottom: 0.3em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C 40 2, 70 11, 108 5 S 170 3, 198 7' fill='none' stroke='%238E907C' stroke-width='2.2' stroke-linecap='round' opacity='0.75'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 104% 0.34em;
+}
+
+/* Vertical rail text */
+.vertical-rl {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes floatSlow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-slow {
+  animation: floatSlow 9s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Legacy helpers still used by untouched sections ---------- */
+
+.section-padding {
+  @apply px-6 py-20 md:px-10 md:py-28 lg:px-16 lg:py-36;
+}
+
+.container-max {
+  @apply w-full max-w-[1600px] mx-auto;
+}
+
+/* ---------- Chrome ---------- */
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ebe5d8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a4a894;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8e907c;
+}
+
+::selection {
+  background-color: #a4a894;
+  color: #f5f1e8;
+}
