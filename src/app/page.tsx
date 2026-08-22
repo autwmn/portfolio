@@ -3,9 +3,8 @@ import Hero from '@/components/Hero'
 import About from '@/components/About'
 import Intersection from '@/components/Intersection'
 import CreativeWorkSection from '@/components/CreativeWorkSection'
-import Experience from '@/components/Experience'
-import BeyondTech from '@/components/BeyondTech'
-import Contact from '@/components/Contact'
+import InProgressProjects from '@/components/InProgressProjects'
+import LetsConnect from '@/components/LetsConnect'
 
 export default function Home() {
   return (
@@ -16,9 +15,8 @@ export default function Home() {
         <About />
         <Intersection />
         <CreativeWorkSection />
-        <Experience />
-        <BeyondTech />
-        <Contact />
+        <InProgressProjects />
+        <LetsConnect />
       </main>
     </>
   )

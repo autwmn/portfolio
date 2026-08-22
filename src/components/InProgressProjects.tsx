@@ -20,14 +20,21 @@ export default function InProgressProjects() {
       id="in-progress"
       className="relative"
       style={{
-        backgroundColor: '#7d8368',
+        backgroundColor: '#b0b4a0',
         backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E")`,
-        paddingTop: '65px',
-        paddingBottom: '65px',
+        paddingTop: '70px',
+        paddingBottom: '55px',
       }}
     >
+      {/* Torn top edge — cream strip tearing into sage, matching cream Websites section above */}
       <div
-        className="mx-auto px-5 md:px-8 lg:px-10"
+        className="torn-bottom absolute inset-x-0 top-0 z-10 h-8"
+        style={{ backgroundColor: '#F5F1E8' }}
+        aria-hidden="true"
+      />
+
+      <div
+        className="mx-auto px-5 md:px-8 lg:px-10 relative"
         style={{ maxWidth: 'min(94%, 1600px)' }}
       >
         <div
@@ -45,7 +52,7 @@ export default function InProgressProjects() {
             <div
               className="inline-block px-2.5 py-1"
               style={{
-                backgroundColor: 'rgba(214,205,189,0.55)',
+                backgroundColor: 'rgba(164, 168, 148, 0.28)',
                 clipPath: 'polygon(2% 8%, 98% 0%, 100% 90%, 0% 100%)',
                 marginBottom: '18px',
               }}
@@ -103,8 +110,8 @@ export default function InProgressProjects() {
             </div>
           </motion.div>
 
-          {/* RIGHT — future.png + descriptions */}
-          <div className="flex flex-col">
+          {/* RIGHT — future.png + descriptions aligned beneath each note */}
+          <div className="in-progress-right flex flex-col">
             <motion.div
               variants={rise}
               initial="hidden"
@@ -117,8 +124,8 @@ export default function InProgressProjects() {
               <img
                 src="/images/future.png"
                 alt="In progress projects — Prima Pilates and ClassBlocks App"
-                className="w-full h-auto"
-                style={{ objectFit: 'contain', display: 'block' }}
+                className="w-full h-auto block"
+                style={{ objectFit: 'contain' }}
               />
             </motion.div>
 
@@ -132,24 +139,30 @@ export default function InProgressProjects() {
               style={{ gap: '32px', marginTop: '20px' }}
             >
               <p
-                className="font-sans"
+                className="font-sans future-description"
                 style={{
                   color: '#302f2b',
-                  fontSize: '16px',
+                  fontSize: '15px',
                   lineHeight: 1.55,
-                  maxWidth: '340px',
+                  textAlign: 'center',
+                  maxWidth: '410px',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
                 }}
               >
                 a modern Pilates business focused on training dancers through
                 strength, control, mobility, and intentional movement.
               </p>
               <p
-                className="font-sans"
+                className="font-sans future-description"
                 style={{
                   color: '#302f2b',
-                  fontSize: '16px',
+                  fontSize: '15px',
                   lineHeight: 1.55,
-                  maxWidth: '340px',
+                  textAlign: 'center',
+                  maxWidth: '410px',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
                 }}
               >
                 a class-planning app designed for instructors to organize
@@ -159,29 +172,6 @@ export default function InProgressProjects() {
             </motion.div>
           </div>
         </div>
-      </div>
-
-      {/* TORN PAPER DIVIDER — ivory sheet overlapping sage */}
-      <div className="relative z-10 -mb-[1px]" aria-hidden="true" style={{ marginTop: '65px' }}>
-        <svg
-          viewBox="0 0 1440 28"
-          preserveAspectRatio="none"
-          className="block w-full h-[18px] md:h-[24px]"
-        >
-          <path
-            d="M0,28 L1440,28 L1440,10
-              C1410,20 1385,8 1355,16 C1325,24 1300,7 1270,14
-              C1240,21 1215,6 1185,13 C1155,20 1130,8 1100,15
-              C1070,22 1045,7 1015,14 C985,21 960,6 930,13
-              C900,20 875,8 845,15 C815,22 790,7 760,14
-              C730,21 705,6 675,13 C645,20 620,8 590,15
-              C560,22 535,7 505,14 C475,21 450,6 420,13
-              C390,20 365,8 335,15 C305,22 280,7 250,14
-              C220,21 195,6 165,13 C135,20 110,8 80,15
-              C50,22 25,7 0,13 Z"
-            fill="#F5F1E8"
-          />
-        </svg>
       </div>
     </section>
   )

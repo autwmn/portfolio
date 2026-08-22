@@ -1,150 +1,193 @@
 'use client'
 
-import { useRef, useState, useEffect, useCallback } from 'react'
+import { useRef, useEffect } from 'react'
 
 interface WebsiteMonitorProps {
-  screenshot: string
+  screenshot?: string
   liveUrl: string
   projectName: string
   projectType: string
+  comingSoon?: boolean
+  scrollOnHover?: boolean
 }
 
-export default function WebsiteMonitor({ screenshot, liveUrl, projectName, projectType }: WebsiteMonitorProps) {
+export default function WebsiteMonitor({
+  screenshot,
+  liveUrl,
+  projectName,
+  projectType,
+  comingSoon,
+  scrollOnHover = false,
+}: WebsiteMonitorProps) {
   const screenRef = useRef<HTMLDivElement>(null)
+  const viewportRef = useRef<HTMLDivElement>(null)
   const imgRef = useRef<HTMLImageElement>(null)
-  const [scrollDist, setScrollDist] = useState(0)
-  const [isScrolling, setIsScrolling] = useState(false)
-  const [imageLoaded, setImageLoaded] = useState(false)
-  const [reducedMotion, setReducedMotion] = useState(false)
-  const [isTouch, setIsTouch] = useState(false)
-  const [tapped, setTapped] = useState(false)
 
   useEffect(() => {
-    setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0)
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setReducedMotion(mq.matches)
-    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches)
-    mq.addEventListener('change', handler)
-    return () => mq.removeEventListener('change', handler)
-  }, [])
+    if (!scrollOnHover || comingSoon || !screenshot) return
+    const screen = screenRef.current
+    const viewport = viewportRef.current
+    const image = imgRef.current
+    if (!screen || !viewport || !image) return
 
-  const recalc = useCallback(() => {
-    if (imgRef.current && screenRef.current) {
-      const screenH = screenRef.current.clientHeight
-      const screenW = screenRef.current.clientWidth
-      const ratio = imgRef.current.naturalHeight / imgRef.current.naturalWidth
-      setScrollDist(Math.max(0, screenW * ratio - screenH))
+    const distance = () =>
+      Math.max(0, image.scrollHeight - viewport.clientHeight)
+
+    const onEnter = () => {
+      const d = distance()
+      if (d > 0) {
+        image.style.transition = 'transform 14s cubic-bezier(0.22, 1, 0.36, 1)'
+        image.style.transform = `translateY(-${d}px)`
+      }
     }
-  }, [])
-
-  useEffect(() => {
-    window.addEventListener('resize', recalc)
-    return () => window.removeEventListener('resize', recalc)
-  }, [recalc])
-
-  const handleMouseEnter = () => {
-    if (!isTouch && !reducedMotion) setIsScrolling(true)
-  }
-
-  const handleMouseLeave = () => {
-    if (!isTouch) setIsScrolling(false)
-  }
-
-  const handleMonitorClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (isTouch && !tapped && scrollDist > 0 && !reducedMotion) {
-      e.preventDefault()
-      setTapped(true)
-      setIsScrolling(true)
-      setTimeout(() => setIsScrolling(false), 5500)
+    const onLeave = () => {
+      image.style.transition = 'transform 3.5s cubic-bezier(0.22, 1, 0.36, 1)'
+      image.style.transform = 'translateY(0)'
     }
-  }
+
+    screen.addEventListener('mouseenter', onEnter)
+    screen.addEventListener('mouseleave', onLeave)
+    return () => {
+      screen.removeEventListener('mouseenter', onEnter)
+      screen.removeEventListener('mouseleave', onLeave)
+    }
+  }, [scrollOnHover, comingSoon, screenshot])
 
   return (
-    <div className="relative">
-      <div
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+    <div className="flex flex-col items-center w-full">
+      <a
+        href={comingSoon ? '#' : liveUrl}
+        target={comingSoon ? undefined : '_blank'}
+        rel={comingSoon ? undefined : 'noopener noreferrer'}
+        className={`block w-full ${comingSoon ? 'cursor-default' : ''}`}
+        aria-label={comingSoon ? `${projectName} — coming soon` : `Visit ${projectName} website`}
       >
-        <a
-          href={liveUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block relative group transition-transform duration-500 ease-editorial"
-          aria-label={`Visit ${projectName} website`}
-          onClick={handleMonitorClick}
-          style={{ willChange: 'transform' }}
+        <div
+          ref={screenRef}
+          className="relative w-full"
+          style={{
+            aspectRatio: '16 / 10',
+            backgroundColor: '#1e1e1e',
+            padding: '5px',
+            borderRadius: '6px',
+            boxShadow: '0 6px 18px rgba(40,42,35,0.18)',
+          }}
         >
-          {/* Monitor shell — subtle lift on hover */}
-          <div className="relative transition-all duration-500 ease-editorial group-hover:-translate-y-[3px] group-hover:drop-shadow-[0_8px_20px_rgba(48,47,43,0.15)]">
-            {/* Screen bezel */}
-            <div className="bg-[#2a2a2a] rounded-[8px] p-[6px] pb-0">
-              {/* Screen area */}
-              <div
-                ref={screenRef}
-                className="relative overflow-hidden bg-cream-100 rounded-t-[4px]"
-                style={{ aspectRatio: '16 / 10' }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  ref={imgRef}
-                  src={screenshot}
-                  alt={`${projectName} website preview`}
-                  className="w-full h-auto block"
+          <div
+            ref={viewportRef}
+            className="w-full h-full overflow-hidden"
+            style={{
+              borderRadius: '2px',
+              backgroundColor: comingSoon ? '#f2ecdd' : '#ffffff',
+            }}
+          >
+            {!comingSoon && screenshot && (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                ref={imgRef}
+                src={screenshot}
+                alt={`${projectName} website preview`}
+                className="block w-full"
+                style={{
+                  height: scrollOnHover ? 'auto' : '100%',
+                  objectFit: scrollOnHover ? 'unset' : 'cover',
+                  objectPosition: 'top center',
+                  transform: 'translateY(0)',
+                  willChange: 'transform',
+                }}
+              />
+            )}
+            {comingSoon && (
+              <div className="w-full h-full flex items-center justify-center">
+                <p
+                  className="uppercase"
                   style={{
-                    transform: isScrolling ? `translateY(-${scrollDist}px)` : 'translateY(0)',
-                    transition: reducedMotion
-                      ? 'none'
-                      : `transform ${isScrolling ? '5s' : '1.5s'} ease-in-out`,
+                    fontFamily: 'Cormorant Garamond, serif',
+                    fontWeight: 300,
+                    fontSize: '15px',
+                    letterSpacing: '0.28em',
+                    color: 'rgba(58,61,50,0.55)',
                   }}
-                  onLoad={() => { setImageLoaded(true); recalc() }}
-                  onError={(e) => { e.currentTarget.style.display = 'none' }}
-                />
-                {!imageLoaded && (
-                  <div className="absolute inset-0 bg-cream-100 flex items-center justify-center">
-                    <p className="eyebrow-xs text-sage-400/60">{projectName}</p>
-                  </div>
-                )}
+                >
+                  Coming Soon
+                </p>
               </div>
-
-              {/* Bottom bezel with camera dot */}
-              <div className="h-[14px] flex items-center justify-center">
-                <div className="w-[4px] h-[4px] rounded-full bg-[#444]" />
-              </div>
-            </div>
-
-            {/* Stand */}
-            <div className="mx-auto w-[35%] h-[18px] bg-[#d4d4d4] rounded-b-[2px]"
-              style={{ clipPath: 'polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)' }} />
-            {/* Base */}
-            <div className="mx-auto w-[50%] h-[5px] bg-[#c8c8c8] rounded-b-[3px]" />
+            )}
           </div>
-        </a>
-      </div>
+        </div>
 
-      {/* Touch preview hint */}
-      {isTouch && !reducedMotion && scrollDist > 0 && (
-        <p className="text-center mt-2 text-[11px] font-sans text-cream-200/70 md:hidden">
-          {tapped ? 'tap again to visit' : 'tap to preview'}
-        </p>
-      )}
+        <div
+          style={{
+            width: '14%',
+            height: '10px',
+            margin: '0 auto',
+            background: 'linear-gradient(to bottom, #cfcfcf, #b8b8b8)',
+          }}
+        />
+        <div
+          style={{
+            width: '34%',
+            height: '4px',
+            margin: '0 auto',
+            background: '#b8b8b8',
+            borderRadius: '2px',
+            boxShadow: '0 3px 6px rgba(40,42,35,0.12)',
+          }}
+        />
+      </a>
 
-      {/* Editorial caption — tight to monitor */}
-      <div style={{ marginTop: '10px' }}>
-        <p className="font-display text-[1.05rem] font-light text-cream-50 tracking-wide uppercase leading-tight">
+      <div style={{ marginTop: '14px', width: '100%', textAlign: 'left' }}>
+        <p
+          className="uppercase"
+          style={{
+            fontFamily: 'Cormorant Garamond, serif',
+            fontWeight: 300,
+            fontSize: '20px',
+            lineHeight: 1.1,
+            color: '#2a2622',
+            letterSpacing: '-0.005em',
+            marginBottom: '5px',
+          }}
+        >
           {projectName}
         </p>
-        <p className="text-[11px] font-sans font-light text-ink/45 uppercase tracking-wider" style={{ marginTop: '2px' }}>
+        <p
+          className="font-sans uppercase"
+          style={{
+            fontSize: '11px',
+            letterSpacing: '0.14em',
+            color: '#5a5f4a',
+            marginBottom: '11px',
+          }}
+        >
           {projectType}
         </p>
-        <a
-          href={liveUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block eyebrow-xs text-cream-200/60 hover:text-cream-50 transition-colors duration-300"
-          style={{ marginTop: '5px' }}
-        >
-          VIEW LIVE SITE →
-        </a>
+        {comingSoon ? (
+          <span
+            className="font-sans uppercase inline-block"
+            style={{
+              fontSize: '11px',
+              letterSpacing: '0.14em',
+              color: 'rgba(90,95,74,0.55)',
+            }}
+          >
+            COMING SOON
+          </span>
+        ) : (
+          <a
+            href={liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-sans uppercase hover:opacity-70 transition-opacity inline-block"
+            style={{
+              fontSize: '11px',
+              letterSpacing: '0.14em',
+              color: '#5a5f4a',
+            }}
+          >
+            VIEW LIVE SITE →
+          </a>
+        )}
       </div>
     </div>
   )

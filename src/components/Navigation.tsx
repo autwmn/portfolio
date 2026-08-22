@@ -7,9 +7,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 const navItems = [
   { label: 'ABOUT', href: '#about' },
   { label: 'PROJECTS', href: '#projects' },
-  { label: 'EXPERIENCE', href: '#experience' },
-  { label: 'BEYOND TECH', href: '#beyond-tech' },
-  { label: 'CONTACT', href: '#contact' },
+  { label: 'IN PROGRESS', href: '#in-progress' },
+  { label: 'CONNECT', href: '#connect' },
 ]
 
 export default function Navigation() {

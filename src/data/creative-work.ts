@@ -9,6 +9,8 @@ export interface WebProject {
   liveUrl: string
   projectName: string
   projectType: string
+  comingSoon?: boolean
+  scrollOnHover?: boolean
 }
 
 export const carouselPosts: CarouselPost[] = [
@@ -43,21 +45,23 @@ export const carouselPosts: CarouselPost[] = [
 
 export const webProjects: WebProject[] = [
   {
-    screenshot: '/images/websites/mkwilson.jpg',
-    liveUrl: '#',
-    projectName: 'MK WILSON',
-    projectType: 'Hairstylist Website',
+    screenshot: '/images/websites/ppweb.png',
+    liveUrl: 'https://perfectpointedance.com',
+    projectName: 'Perfect Pointe Dance',
+    projectType: 'Dance Studio Website',
+    scrollOnHover: true,
   },
   {
-    screenshot: '/images/websites/alwayscreative.jpg',
-    liveUrl: '#',
-    projectName: 'ALWAYS CREATIVE',
-    projectType: 'Makeup Artist Website',
+    screenshot: '/images/websites/elevateweb.png',
+    liveUrl: 'https://elevatedancestudiosc.com',
+    projectName: 'Elevate Dance SC',
+    projectType: 'Dance Studio Website',
   },
   {
-    screenshot: '/images/websites/greenspace.jpg',
+    screenshot: '',
     liveUrl: '#',
-    projectName: 'GREENSPACE',
-    projectType: 'Plant Shop Website',
+    projectName: 'Prima Pilates',
+    projectType: 'Pilates Studio Website',
+    comingSoon: true,
   },
 ]

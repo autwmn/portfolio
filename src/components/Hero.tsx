@@ -154,7 +154,7 @@ export default function Hero() {
             <Link href="#projects" className="pill pill-solid">
               View my work <span aria-hidden="true">→</span>
             </Link>
-            <Link href="#contact" className="pill pill-ghost">
+            <Link href="#connect" className="pill pill-ghost">
               Let&apos;s connect
             </Link>
           </motion.div>
