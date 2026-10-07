@@ -22,7 +22,7 @@ const labels = [
   { text: 'dancer', className: 'left-[-3%] top-[56%] -rotate-[3deg]' },
   { text: 'teacher', className: 'left-[17%] top-[86%] rotate-[2deg]' },
   { text: 'problem solver', className: 'right-[-4%] top-[42%] rotate-[4deg]' },
-  { text: 'entrepreneur', className: 'right-[-4%] top-[62%] rotate-[2deg]' },
+  { text: 'developer', className: 'right-[-4%] top-[62%] rotate-[2deg]' },
 ]
 
 export default function About() {
@@ -118,13 +118,16 @@ export default function About() {
           className="relative z-20 space-y-5 text-[0.95rem] leading-[1.8] text-ink/85"
         >
           <p>
-            I&apos;m a Computer Science student with a minor in Marketing interested in the
-            intersection of technology, data, creativity, and business.
+            CS major, Marketing minor at UC Riverside — on the BS+MS track, so bachelor&apos;s
+            in Spring 2027 and masters the year after. Looking for a Summer 2027 internship
+            in software, AI, data, or tech-focused marketing.
           </p>
           <p>
-            Outside of tech, I&apos;m also a dancer, teacher, Pilates instructor, and
-            entrepreneur — experiences that have shaped how I communicate, solve problems,
-            and build for real people.
+            Outside of class I run the digital side of two dance studios — Perfect Pointe
+            in Covina and Elevate in South Carolina — handling websites, scheduling, and
+            social end-to-end, and building small AI agents to handle the stuff I don&apos;t
+            want to redo every week. I also dance professionally and teach Pilates, which
+            is where I learned to listen before I build.
           </p>
         </motion.div>
 
@@ -138,15 +141,17 @@ export default function About() {
           className="relative z-20 space-y-7"
         >
           <div className="border-t border-sage-800/25 pt-5">
-            <p className="eyebrow-xs text-sage-800">Thinking</p>
+            <p className="eyebrow-xs text-sage-800">Studying</p>
             <p className="mt-2.5 text-[0.9rem] leading-relaxed text-ink/70">
-              Systems thinking, user-centered design, data literacy, and problem solving.
+              Databases, software testing, concurrent systems, and integrated marketing — all
+              this term. GPA 3.51, Dean&apos;s Honors.
             </p>
           </div>
           <div className="border-t border-sage-800/25 pt-5">
             <p className="eyebrow-xs text-sage-800">Building</p>
             <p className="mt-2.5 text-[0.9rem] leading-relaxed text-ink/70">
-              Full-stack software, data projects, digital experiences, and strategy.
+              Two production studio sites, a scheduling system for 100+ students, and AI
+              agents that handle the small stuff — email replies, schedule fixes, git pushes.
             </p>
           </div>
         </motion.div>

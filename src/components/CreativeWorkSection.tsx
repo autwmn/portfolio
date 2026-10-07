@@ -1,9 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import InstagramCarousel from './InstagramCarousel'
+import InstagramEmbed from './InstagramEmbed'
 import WebsiteMonitor from './WebsiteMonitor'
-import { carouselPosts, webProjects } from '@/data/creative-work'
+import { socialPosts, webProjects } from '@/data/creative-work'
 
 const ease = [0.22, 1, 0.36, 1] as const
 const viewport = { once: true, margin: '-60px' }
@@ -17,7 +17,10 @@ const rise = {
   }),
 }
 
-const carouselRotations = [-0.5, 0.5, -0.25]
+// Small per-cell drop so the grid reads as pinned up, not strictly gridded
+const reelOffsets = ['0px', '18px']
+const carouselOffsets = ['12px', '0px', '20px']
+const postNotes = { carousel: 'click through', reel: 'press play' }
 
 export default function CreativeWorkSection() {
   return (
@@ -36,87 +39,170 @@ export default function CreativeWorkSection() {
           className="mx-auto px-5 md:px-8 lg:px-10"
           style={{ maxWidth: 'min(94%, 1600px)', paddingTop: '65px', paddingBottom: '65px' }}
         >
-          {/* Heading row — tight bottom margin */}
+          {/* Heading row — plain */}
           <motion.div
             variants={rise}
             initial="hidden"
             whileInView="visible"
             viewport={viewport}
             custom={0}
-            className="flex items-end justify-between"
-            style={{ marginBottom: '30px' }}
+            style={{ marginBottom: '28px' }}
           >
-            <div>
-              <h3 className="font-sans text-[15px] font-medium tracking-[0.14em] text-ink/70 uppercase">
-                Social / Carousels
-              </h3>
-              <svg width="130" height="6" viewBox="0 0 130 6" className="mt-1" aria-hidden="true">
-                <path
-                  d="M2 4 C 20 1, 45 5, 70 3 S 110 1, 128 3.5"
-                  fill="none"
-                  stroke="#F5F1E8"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  opacity="0.7"
-                />
-              </svg>
-            </div>
+            <h3 className="font-sans text-[15px] font-medium tracking-[0.14em] text-ink/70 uppercase">
+              Social / Carousels + Reels
+            </h3>
+            <svg width="130" height="6" viewBox="0 0 130 6" className="mt-1" aria-hidden="true">
+              <path
+                d="M2 4 C 20 1, 45 5, 70 3 S 110 1, 128 3.5"
+                fill="none"
+                stroke="#F5F1E8"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                opacity="0.7"
+              />
+            </svg>
           </motion.div>
 
-          {/* One horizontal composition: note + 3 carousels */}
-          <div className="relative">
-            {/* "click through" annotation — above the third carousel area */}
-            <div className="absolute -top-6 hidden md:block z-10" style={{ right: '5%' }}>
-              <span className="handwritten text-[1.1rem] text-ink/38 inline-flex items-center gap-1.5">
-                click through
-                <span className="text-ink/25">→</span>
-              </span>
-            </div>
+          {(() => {
+            const reels = socialPosts.filter((p) => p.kind === 'reel')
+            const carousels = socialPosts.filter((p) => p.kind === 'carousel')
 
-            <div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[280px_1fr_1fr_1fr] items-center"
-              style={{ gap: '24px' }}
-            >
-              {/* Scrapbook note PNG */}
+            const Post = ({
+              post,
+              index,
+              offset,
+              label,
+            }: {
+              post: (typeof socialPosts)[number]
+              index: number
+              offset: string
+              label: string
+            }) => (
               <motion.div
                 variants={rise}
                 initial="hidden"
                 whileInView="visible"
                 viewport={viewport}
-                custom={1}
-                className="flex justify-center lg:justify-start"
+                custom={index + 1}
+                className="social-post w-full mx-auto"
+                style={{
+                  maxWidth: post.kind === 'reel' ? '240px' : '360px',
+                  ['--drop' as string]: offset,
+                }}
               >
-                <div style={{ transform: 'rotate(-1.5deg)' }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/images/scrapbook/note.png"
-                    alt="A few of my favorite carousels I've designed for brands and clients. Content that connects and converts."
-                    className="w-full h-auto object-contain drop-shadow-[0_4px_12px_rgba(48,47,43,0.08)]"
-                    style={{ maxWidth: '300px' }}
-                  />
+                <div className="flex items-baseline justify-between" style={{ marginBottom: '10px' }}>
+                  <span className="font-sans text-[11px] font-medium tracking-[0.16em] text-ink/70 uppercase">
+                    {label}
+                  </span>
+                  <span className="handwritten text-[1.1rem] text-ink/60 inline-flex items-center gap-1.5">
+                    {postNotes[post.kind]}
+                    <span aria-hidden="true" className="text-ink/40">↓</span>
+                  </span>
+                </div>
+
+                <InstagramEmbed
+                  shortcode={post.shortcode}
+                  kind={post.kind}
+                  title={`${post.title} — ${post.client} ${post.kind} on Instagram`}
+                />
+
+                <div style={{ marginTop: '14px' }}>
+                  <p
+                    className="uppercase"
+                    style={{
+                      fontFamily: 'Cormorant Garamond, serif',
+                      fontWeight: 300,
+                      fontSize: '20px',
+                      lineHeight: 1.1,
+                      color: '#2a2622',
+                      marginBottom: '5px',
+                    }}
+                  >
+                    {post.title}
+                  </p>
+                  <p
+                    className="font-sans uppercase"
+                    style={{
+                      fontSize: '11px',
+                      letterSpacing: '0.14em',
+                      color: '#3F4438',
+                      marginBottom: '9px',
+                    }}
+                  >
+                    {post.client}
+                  </p>
+                  <a
+                    href={post.postUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-sans uppercase hover:opacity-70 transition-opacity inline-block"
+                    style={{ fontSize: '11px', letterSpacing: '0.14em', color: '#3F4438' }}
+                  >
+                    View on Instagram →
+                  </a>
                 </div>
               </motion.div>
+            )
 
-              {/* 3 Instagram carousels */}
-              {carouselPosts.map((post, i) => (
-                <motion.div
-                  key={post.title}
-                  variants={rise}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={viewport}
-                  custom={i + 2}
-                  style={{ transform: `rotate(${carouselRotations[i]}deg)` }}
+            const StickyNote = () => (
+              <motion.div
+                variants={rise}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewport}
+                custom={3}
+                className="flex h-full items-center justify-center"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/scrapbook/note.png"
+                  alt="A few of my favorite carousels and reels I've designed for brands and clients. Content that connects and converts."
+                  className="w-full h-auto object-contain drop-shadow-[0_8px_24px_rgba(48,47,43,0.18)]"
+                  style={{
+                    maxWidth: '760px',
+                    transform: 'rotate(-3deg)',
+                  }}
+                />
+              </motion.div>
+            )
+
+            return (
+              <div className="space-y-14">
+                {/* TOP ROW: 2 reels + sticky note */}
+                <div
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-start"
+                  style={{ columnGap: '32px', rowGap: '48px' }}
                 >
-                  <InstagramCarousel
-                    slides={post.slides}
-                    postUrl={post.postUrl}
-                    title={post.title}
-                  />
-                </motion.div>
-              ))}
-            </div>
-          </div>
+                  {reels.map((reel, i) => (
+                    <Post
+                      key={reel.shortcode}
+                      post={reel}
+                      index={i}
+                      offset={reelOffsets[i]}
+                      label={`REEL / 0${i + 1}`}
+                    />
+                  ))}
+                  <StickyNote />
+                </div>
+
+                {/* BOTTOM ROW: 3 carousels */}
+                <div
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-start"
+                  style={{ columnGap: '32px', rowGap: '48px' }}
+                >
+                  {carousels.map((car, i) => (
+                    <Post
+                      key={car.shortcode}
+                      post={car}
+                      index={i + 2}
+                      offset={carouselOffsets[i]}
+                      label={`CAROUSEL / 0${i + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            )
+          })()}
         </div>
       </div>
 
@@ -161,8 +247,8 @@ export default function CreativeWorkSection() {
           style={{ width: 'min(94%, 1440px)' }}
         >
           <div
-            className="grid items-start grid-cols-1 md:grid-cols-2 lg:grid-cols-[0.75fr_1.35fr_1.35fr_1.35fr]"
-            style={{ gap: '34px' }}
+            className="grid items-start grid-cols-1 md:grid-cols-2 lg:grid-cols-[0.8fr_1.5fr_1.5fr]"
+            style={{ gap: '48px' }}
           >
             {/* Left editorial intro column */}
             <motion.div
@@ -215,7 +301,7 @@ export default function CreativeWorkSection() {
               </p>
             </motion.div>
 
-            {/* Three monitors */}
+            {/* Monitors */}
             {webProjects.map((project, i) => (
               <motion.div
                 key={project.projectName}
@@ -225,7 +311,7 @@ export default function CreativeWorkSection() {
                 viewport={viewport}
                 custom={i + 1}
                 className="relative"
-                style={{ maxWidth: '360px', width: '100%', justifySelf: 'center' }}
+                style={{ maxWidth: '480px', width: '100%', justifySelf: 'center' }}
               >
                 {/* "hover to scroll through" annotation — single line above Perfect Pointe */}
                 {i === 0 && (
@@ -271,12 +357,11 @@ export default function CreativeWorkSection() {
                   liveUrl={project.liveUrl}
                   projectName={project.projectName}
                   projectType={project.projectType}
-                  comingSoon={project.comingSoon}
                   scrollOnHover={project.scrollOnHover}
                 />
 
-                {/* Strategy note clipped to top-right of the third (Prima) monitor */}
-                {i === 2 && (
+                {/* Strategy note clipped to top-right of the last monitor */}
+                {i === webProjects.length - 1 && (
                   <div
                     className="absolute hidden md:block pointer-events-none"
                     style={{

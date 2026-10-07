@@ -7,7 +7,6 @@ interface WebsiteMonitorProps {
   liveUrl: string
   projectName: string
   projectType: string
-  comingSoon?: boolean
   scrollOnHover?: boolean
 }
 
@@ -16,7 +15,6 @@ export default function WebsiteMonitor({
   liveUrl,
   projectName,
   projectType,
-  comingSoon,
   scrollOnHover = false,
 }: WebsiteMonitorProps) {
   const screenRef = useRef<HTMLDivElement>(null)
@@ -24,7 +22,7 @@ export default function WebsiteMonitor({
   const imgRef = useRef<HTMLImageElement>(null)
 
   useEffect(() => {
-    if (!scrollOnHover || comingSoon || !screenshot) return
+    if (!scrollOnHover || !screenshot) return
     const screen = screenRef.current
     const viewport = viewportRef.current
     const image = imgRef.current
@@ -51,16 +49,16 @@ export default function WebsiteMonitor({
       screen.removeEventListener('mouseenter', onEnter)
       screen.removeEventListener('mouseleave', onLeave)
     }
-  }, [scrollOnHover, comingSoon, screenshot])
+  }, [scrollOnHover, screenshot])
 
   return (
     <div className="flex flex-col items-center w-full">
       <a
-        href={comingSoon ? '#' : liveUrl}
-        target={comingSoon ? undefined : '_blank'}
-        rel={comingSoon ? undefined : 'noopener noreferrer'}
-        className={`block w-full ${comingSoon ? 'cursor-default' : ''}`}
-        aria-label={comingSoon ? `${projectName} — coming soon` : `Visit ${projectName} website`}
+        href={liveUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block w-full"
+        aria-label={`Visit ${projectName} website`}
       >
         <div
           ref={screenRef}
@@ -78,10 +76,10 @@ export default function WebsiteMonitor({
             className="w-full h-full overflow-hidden"
             style={{
               borderRadius: '2px',
-              backgroundColor: comingSoon ? '#f2ecdd' : '#ffffff',
+              backgroundColor: '#ffffff',
             }}
           >
-            {!comingSoon && screenshot && (
+            {screenshot && (
               /* eslint-disable-next-line @next/next/no-img-element */
               <img
                 ref={imgRef}
@@ -96,22 +94,6 @@ export default function WebsiteMonitor({
                   willChange: 'transform',
                 }}
               />
-            )}
-            {comingSoon && (
-              <div className="w-full h-full flex items-center justify-center">
-                <p
-                  className="uppercase"
-                  style={{
-                    fontFamily: 'Cormorant Garamond, serif',
-                    fontWeight: 300,
-                    fontSize: '15px',
-                    letterSpacing: '0.28em',
-                    color: 'rgba(58,61,50,0.55)',
-                  }}
-                >
-                  Coming Soon
-                </p>
-              </div>
             )}
           </div>
         </div>
@@ -162,32 +144,19 @@ export default function WebsiteMonitor({
         >
           {projectType}
         </p>
-        {comingSoon ? (
-          <span
-            className="font-sans uppercase inline-block"
-            style={{
-              fontSize: '11px',
-              letterSpacing: '0.14em',
-              color: 'rgba(90,95,74,0.55)',
-            }}
-          >
-            COMING SOON
-          </span>
-        ) : (
-          <a
-            href={liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-sans uppercase hover:opacity-70 transition-opacity inline-block"
-            style={{
-              fontSize: '11px',
-              letterSpacing: '0.14em',
-              color: '#5a5f4a',
-            }}
-          >
-            VIEW LIVE SITE →
-          </a>
-        )}
+        <a
+          href={liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-sans uppercase hover:opacity-70 transition-opacity inline-block"
+          style={{
+            fontSize: '11px',
+            letterSpacing: '0.14em',
+            color: '#5a5f4a',
+          }}
+        >
+          VIEW LIVE SITE →
+        </a>
       </div>
     </div>
   )

@@ -1,18 +1,25 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navItems = [
   { label: 'ABOUT', href: '#about' },
   { label: 'PROJECTS', href: '#projects' },
-  { label: 'IN PROGRESS', href: '#in-progress' },
   { label: 'CONNECT', href: '#connect' },
 ]
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <motion.nav
@@ -20,8 +27,15 @@ export default function Navigation() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-x-0 top-0 z-50"
+      style={{
+        backgroundColor: scrolled ? 'rgba(245, 241, 232, 0.88)' : 'transparent',
+        backdropFilter: scrolled ? 'saturate(1.1) blur(10px)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'saturate(1.1) blur(10px)' : 'none',
+        borderBottom: scrolled ? '1px solid rgba(97, 103, 87, 0.14)' : '1px solid transparent',
+        transition: 'background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease',
+      }}
     >
-      <div className="mx-auto flex max-w-[1600px] items-start justify-between px-5 pt-5 md:px-10 md:pt-8">
+      <div className="mx-auto flex max-w-[1600px] items-start justify-between px-5 pt-5 pb-3 md:px-10 md:pt-6 md:pb-4">
         {/* Monogram */}
         <Link href="/" className="group relative shrink-0" aria-label="Autumn Joyner — home">
           <span className="fashion block text-[1.9rem] leading-none text-ink md:text-[2.3rem]">
@@ -39,14 +53,6 @@ export default function Navigation() {
               {item.label}
             </Link>
           ))}
-          <a
-            href="/resume.pdf"
-            className="pill pill-ghost ml-2"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Resume <span aria-hidden="true">↗</span>
-          </a>
         </div>
 
         {/* Mobile trigger */}
@@ -84,14 +90,6 @@ export default function Navigation() {
                 </li>
               ))}
             </ul>
-            <a
-              href="/resume.pdf"
-              className="pill pill-ghost mt-7"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Resume ↗
-            </a>
           </motion.div>
         )}
       </AnimatePresence>

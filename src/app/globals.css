@@ -254,6 +254,13 @@ a {
   background-size: 104% 0.34em;
 }
 
+/* Social posts — staggered drop on the desktop row only */
+@media (min-width: 1024px) {
+  .social-post {
+    margin-top: var(--drop, 0);
+  }
+}
+
 /* Vertical rail text */
 .vertical-rl {
   writing-mode: vertical-rl;

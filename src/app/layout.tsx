@@ -5,9 +5,6 @@ export const metadata: Metadata = {
   title: 'Autumn Joyner — Computer Science + Marketing',
   description:
     'Computer Science student and marketing strategist. Software, data, digital strategy — where logic meets creativity.',
-  icons: {
-    icon: '/favicon.ico',
-  },
 }
 
 export default function RootLayout({

@@ -21,9 +21,9 @@ const INSTAGRAM_URL = 'https://instagram.com/autumnjoyner'
 const INSTAGRAM_HANDLE = '@autumnjoyner'
 const GITHUB_URL = 'https://github.com/autwmn'
 const GITHUB_HANDLE = 'github.com/autwmn'
-const LOCATION = 'San Diego, California'
+const LOCATION = 'Southern California'
 const MAP_URL =
-  'https://www.google.com/maps/search/?api=1&query=San+Diego%2C+California'
+  'https://www.google.com/maps/search/?api=1&query=Southern+California'
 
 type Row = {
   label: string
@@ -154,15 +154,15 @@ export default function LetsConnect() {
       id="connect"
       className="relative"
       style={{
-        backgroundColor: '#F5F1E8',
+        backgroundColor: '#EBE5D8',
         paddingTop: '75px',
         paddingBottom: '65px',
       }}
     >
-      {/* Torn top edge — sage strip tearing into cream, matching sage InProgressProjects above */}
+      {/* Torn top edge — ivory strip tearing into soft cream, matching the Websites section above */}
       <div
         className="torn-bottom absolute inset-x-0 top-0 z-10 h-8"
-        style={{ backgroundColor: '#b0b4a0' }}
+        style={{ backgroundColor: '#F5F1E8' }}
         aria-hidden="true"
       />
 
@@ -191,7 +191,7 @@ export default function LetsConnect() {
               }}
             >
               <span className="text-xs font-medium tracking-widest text-ink/70 uppercase">
-                WEB / 04
+                WEB / 03
               </span>
             </div>
 
@@ -219,8 +219,9 @@ export default function LetsConnect() {
                 marginBottom: '18px',
               }}
             >
-              I&apos;m always open to new opportunities, collaborations, and
-              creative conversations.
+              Looking for a Summer 2027 internship in software, AI, data, or
+              tech-focused marketing. Or just send me the thing you&apos;re
+              building — I like talking shop.
             </p>
 
             <div className="inline-flex items-center gap-2">
@@ -235,7 +236,7 @@ export default function LetsConnect() {
                   display: 'inline-block',
                 }}
               >
-                let&apos;s bring ideas to life together.
+                let&apos;s build something real.
               </span>
               <svg width="18" height="16" viewBox="0 0 18 16" aria-hidden="true">
                 <path
