@@ -114,16 +114,14 @@ export default function About() {
           className="relative z-20 space-y-5 text-[0.95rem] leading-[1.8] text-ink/85"
         >
           <p>
-            CS major, Marketing minor at UC Riverside — on the BS+MS track, so bachelor&apos;s
-            in Spring 2027 and masters the year after. Looking for a Summer 2027 internship
+           BS+ MS in Computer Science minor in Business Marketing at UC Riverside. Expected MS grad year 2028. Looking for a Summer 2027 internship
             in software, AI, data, or tech-focused marketing.
           </p>
           <p>
             Outside of class I run the digital side of two dance studios — Perfect Pointe
-            in Covina and Elevate in South Carolina — handling websites, scheduling, and
+            in Covina and Elevate in South Carolina — handling websites, scheduling databases, and
             social end-to-end, and building small AI agents to handle the stuff I don&apos;t
-            want to redo every week. I also dance professionally and teach Pilates, which
-            is where I learned to listen before I build.
+            want to redo every week. Outside of tech I dance and teach Pilates!
           </p>
         </motion.div>
 
@@ -147,7 +145,7 @@ export default function About() {
             <p className="eyebrow-xs text-sage-800">Building</p>
             <p className="mt-2.5 text-[0.9rem] leading-relaxed text-ink/70">
               Two production studio sites, a scheduling system for 100+ students, and AI
-              agents that handle the small stuff — email replies, schedule fixes, git pushes.
+              agents and workflows that handle the small stuff — email replies, schedule fixes, git pushes.
             </p>
           </div>
         </motion.div>
