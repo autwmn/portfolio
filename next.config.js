@@ -3,7 +3,7 @@ const nextConfig = {
   output: 'export',
   images: {
     formats: ['image/avif', 'image/webp'],
-    unoptimized: true, // Required for static export
+    unoptimized: true,
   },
 }
 
