@@ -80,7 +80,7 @@ export default function WebsiteMonitor({
             }}
           >
             {screenshot && (
-              
+              /* eslint-disable-next-line @next/next/no-img-element */
               <img
                 ref={imgRef}
                 src={screenshot}

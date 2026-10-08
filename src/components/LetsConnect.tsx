@@ -15,15 +15,15 @@ const rise = {
 }
 
 const EMAIL = 'autumnjoyner06@gmail.com'
-const LINKEDIN_URL = 'https:
+const LINKEDIN_URL = 'https://linkedin.com/in/autumnjoyner'
 const LINKEDIN_HANDLE = 'linkedin.com/in/autumnjoyner'
-const INSTAGRAM_URL = 'https:
+const INSTAGRAM_URL = 'https://instagram.com/autumnjoyner'
 const INSTAGRAM_HANDLE = '@autumnjoyner'
-const GITHUB_URL = 'https:
+const GITHUB_URL = 'https://github.com/autwmn'
 const GITHUB_HANDLE = 'github.com/autwmn'
 const LOCATION = 'Southern California'
 const MAP_URL =
-  'https:
+  'https://www.google.com/maps/search/?api=1&query=Southern+California'
 
 type Row = {
   label: string
@@ -159,7 +159,7 @@ export default function LetsConnect() {
         paddingBottom: '65px',
       }}
     >
-      {}
+      {/* Torn top edge — ivory strip tearing into soft cream, matching the Websites section above */}
       <div
         className="torn-bottom absolute inset-x-0 top-0 z-10 h-8"
         style={{ backgroundColor: '#F5F1E8' }}
@@ -174,7 +174,7 @@ export default function LetsConnect() {
           className="grid grid-cols-1 lg:grid-cols-[30%_38%_32%] items-start"
           style={{ gap: '40px' }}
         >
-          {}
+          {/* LEFT — title + copy */}
           <motion.div
             variants={rise}
             initial="hidden"
@@ -251,7 +251,7 @@ export default function LetsConnect() {
             </div>
           </motion.div>
 
-          {}
+          {/* CENTER — contact CTA rows */}
           <motion.div
             variants={rise}
             initial="hidden"
@@ -321,7 +321,7 @@ export default function LetsConnect() {
             </ul>
           </motion.div>
 
-          {}
+          {/* RIGHT — cta.png scrapbook graphic */}
           <motion.div
             variants={rise}
             initial="hidden"
@@ -330,7 +330,7 @@ export default function LetsConnect() {
             custom={2}
             className="flex justify-center lg:justify-end"
           >
-            {}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/images/cta.png"
               alt="let's create something meaningful together."
