@@ -15,15 +15,15 @@ const rise = {
 }
 
 const EMAIL = 'autumnjoyner06@gmail.com'
-const LINKEDIN_URL = 'https:
+const LINKEDIN_URL = 'https://www.linkedin.com/in/autumnjoyner'
 const LINKEDIN_HANDLE = 'linkedin.com/in/autumnjoyner'
-const INSTAGRAM_URL = 'https:
+const INSTAGRAM_URL = 'https://www.instagram.com/autumnjoyner'
 const INSTAGRAM_HANDLE = '@autumnjoyner'
-const GITHUB_URL = 'https:
+const GITHUB_URL = 'https://github.com/autwmn'
 const GITHUB_HANDLE = 'github.com/autwmn'
 const LOCATION = 'Southern California'
 const MAP_URL =
-  'https:
+  'https://www.google.com/maps/search/Southern+California'
 
 type Row = {
   label: string

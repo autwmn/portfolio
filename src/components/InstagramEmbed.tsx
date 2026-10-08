@@ -70,7 +70,7 @@ export default function InstagramEmbed({ shortcode, kind, title }: InstagramEmbe
     >
       <iframe
         ref={frameRef}
-        src={`https:
+        src={`https://www.instagram.com/${path}/${shortcode}/embed/`}
         title={title}
         loading="lazy"
         allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
