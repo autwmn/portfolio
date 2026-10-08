@@ -118,10 +118,8 @@ export default function About() {
             in software, AI, data, or tech-focused marketing.
           </p>
           <p>
-            Outside of class I run the digital side of two dance studios — Perfect Pointe
-            in Covina and Elevate in South Carolina — handling websites, scheduling databases, and
-            social end-to-end, and building small AI agents to handle the stuff I don&apos;t
-            want to redo every week. Outside of tech I dance and teach Pilates!
+            Outside of class I run the digital side of two dance studios handling websites, scheduling databases, and
+            social media management. I utilize AI agents and workflows to keep things running when I'm offline. Outside of tech I dance and teach Pilates!
           </p>
         </motion.div>
 
@@ -144,8 +142,8 @@ export default function About() {
           <div className="border-t border-sage-800/25 pt-5">
             <p className="eyebrow-xs text-sage-800">Building</p>
             <p className="mt-2.5 text-[0.9rem] leading-relaxed text-ink/70">
-              Two production studio sites, a scheduling system for 100+ students, and AI
-              agents and workflows that handle the small stuff — email replies, schedule fixes, git pushes.
+              Designed and maintain two full websites, a scheduling system for 100+ students, and AI
+              agents and workflows that handle the small stuff like email replies, schedule fixes, git pushes.
             </p>
           </div>
         </motion.div>
