@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ============================================================
-   AUTUMN JOYNER — EDITORIAL BASE
-   Cormorant Garamond (display) · DM Sans (body) · Caveat (notes)
-   ============================================================ */
-
 * {
   margin: 0;
   padding: 0;
@@ -29,8 +24,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
-
-/* ---------- Typography ---------- */
 
 h1,
 h2,
@@ -59,7 +52,6 @@ a {
   text-decoration: none;
 }
 
-/* Hero display — 110–160px on desktop */
 .display-hero {
   font-family: 'Cormorant Garamond', Garamond, serif;
   font-weight: 300;
@@ -68,7 +60,6 @@ a {
   letter-spacing: -0.045em;
 }
 
-/* Section titles — 70–110px */
 .display-section {
   font-family: 'Cormorant Garamond', Garamond, serif;
   font-weight: 300;
@@ -77,7 +68,6 @@ a {
   letter-spacing: -0.035em;
 }
 
-/* Secondary editorial headings — 36–60px */
 .display-sub {
   font-family: 'Cormorant Garamond', Garamond, serif;
   font-weight: 300;
@@ -86,14 +76,12 @@ a {
   letter-spacing: -0.025em;
 }
 
-/* High-fashion accent — use sparingly, single words */
 .fashion {
   font-family: 'Bodoni Moda', 'Cormorant Garamond', serif;
   font-weight: 400;
   letter-spacing: -0.02em;
 }
 
-/* Editorial italic phrases */
 .editorial-italic {
   font-family: 'Cormorant Garamond', Garamond, serif;
   font-style: italic;
@@ -101,7 +89,6 @@ a {
   letter-spacing: 0;
 }
 
-/* Tiny uppercase labels — 11–13px */
 .eyebrow {
   font-family: 'DM Sans', system-ui, sans-serif;
   font-weight: 500;
@@ -119,15 +106,12 @@ a {
   text-transform: uppercase;
 }
 
-/* Annotations only — arrows, notes, 2–5 words */
 .handwritten {
   font-family: 'Caveat', cursive;
   font-weight: 400;
   letter-spacing: 0;
   line-height: 1.15;
 }
-
-/* ---------- Paper & texture ---------- */
 
 .grain-overlay {
   position: fixed;
@@ -158,7 +142,6 @@ a {
   box-shadow: 0 14px 40px -22px rgba(48, 47, 43, 0.4);
 }
 
-/* Torn paper edges — irregular, never a rounded rectangle */
 .torn-bottom {
   clip-path: polygon(
     0% 0%, 100% 0%, 100% 93%, 96% 97%, 91% 92%, 86% 98%, 80% 93%, 74% 99%,
@@ -183,7 +166,6 @@ a {
   );
 }
 
-/* Masking tape */
 .tape {
   position: absolute;
   width: 88px;
@@ -194,7 +176,6 @@ a {
   clip-path: polygon(2% 12%, 98% 0%, 100% 84%, 0% 100%);
 }
 
-/* Irregular organic sage shapes */
 .blob-a {
   border-radius: 62% 38% 44% 56% / 48% 58% 42% 52%;
 }
@@ -206,8 +187,6 @@ a {
 .blob-c {
   border-radius: 55% 45% 33% 67% / 39% 61% 39% 61%;
 }
-
-/* ---------- Editorial controls ---------- */
 
 .pill {
   display: inline-flex;
@@ -244,8 +223,6 @@ a {
   border-color: rgba(97, 103, 87, 0.7);
 }
 
-/* Pencil underline mark — painted on the element so it never fights
-   a positioning utility applied to the same node. */
 .pencil-underline {
   padding-bottom: 0.3em;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C 40 2, 70 11, 108 5 S 170 3, 198 7' fill='none' stroke='%238E907C' stroke-width='2.2' stroke-linecap='round' opacity='0.75'/%3E%3C/svg%3E");
@@ -254,20 +231,16 @@ a {
   background-size: 104% 0.34em;
 }
 
-/* Social posts — staggered drop on the desktop row only */
 @media (min-width: 1024px) {
   .social-post {
     margin-top: var(--drop, 0);
   }
 }
 
-/* Vertical rail text */
 .vertical-rl {
   writing-mode: vertical-rl;
   text-orientation: mixed;
 }
-
-/* ---------- Motion ---------- */
 
 @keyframes floatSlow {
   0%,
@@ -294,8 +267,6 @@ a {
   }
 }
 
-/* ---------- Legacy helpers still used by untouched sections ---------- */
-
 .section-padding {
   @apply px-6 py-20 md:px-10 md:py-28 lg:px-16 lg:py-36;
 }
@@ -303,8 +274,6 @@ a {
 .container-max {
   @apply w-full max-w-[1600px] mx-auto;
 }
-
-/* ---------- Chrome ---------- */
 
 ::-webkit-scrollbar {
   width: 9px;
