@@ -14,7 +14,6 @@ const rise = {
   }),
 }
 
-/* Minimal line marks, 20px inside a 46px sage ring. No fills, no gradients. */
 const icons = {
   build: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" className="h-5 w-5" strokeLinecap="round" strokeLinejoin="round">
@@ -103,7 +102,7 @@ export default function Intersection() {
           I work at the intersection of
         </motion.h2>
 
-        {/* Three disciplines — thin rules between them, no containers */}
+        {}
         <div className="mt-10 grid grid-cols-1 lg:mt-10 lg:grid-cols-3">
           {disciplines.map((d, i) => (
             <motion.div

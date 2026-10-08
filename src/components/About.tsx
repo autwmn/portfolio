@@ -15,8 +15,6 @@ const rise = {
   }),
 }
 
-/* Identity labels — tiny handwritten annotations around the portrait */
-/* Placed in the gaps around her — clear of the extended leg and the tambourine arm */
 const labels = [
   { text: 'engineer', className: 'left-[20%] top-[17%] -rotate-[6deg]' },
   { text: 'dancer', className: 'left-[-3%] top-[56%] -rotate-[3deg]' },
@@ -28,7 +26,7 @@ const labels = [
 export default function About() {
   return (
     <section id="about" className="relative w-full overflow-hidden bg-sage-400">
-      {/* Torn paper transitions into the ivory sections above and below */}
+      {}
       <div
         className="torn-bottom absolute inset-x-0 top-0 z-10 h-10 bg-cream-50"
         aria-hidden="true"
@@ -39,7 +37,7 @@ export default function About() {
       />
 
       <div className="mx-auto grid max-w-[1320px] grid-cols-1 items-center gap-12 px-8 py-24 md:px-12 lg:grid-cols-[2.3fr_0.72fr_1fr_0.85fr] lg:gap-10 lg:py-24">
-        {/* ---------- Portrait ---------- */}
+        {}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -47,14 +45,13 @@ export default function About() {
           transition={{ duration: 1, ease }}
           className="relative z-20 mx-auto w-[62%] max-w-[240px] lg:mx-0 lg:w-full lg:max-w-none"
         >
-          {/* organic layer behind the portrait */}
+          {}
           <div
             className="blob-b absolute -inset-x-[14%] -top-[6%] bottom-[4%] z-0 bg-cream-200/45"
             aria-hidden="true"
           />
           <span className="tape left-1/2 top-[-14px] z-30 -translate-x-1/2 -rotate-[5deg]" />
-          {/* aspect matches the trimmed portrait (1053×1327) so object-contain
-              leaves no dead space around her */}
+          {}
           <EditorialImage
             src="/images/portrait.png"
             alt="Autumn Joyner in arabesque"
@@ -64,7 +61,7 @@ export default function About() {
             label="portrait cutout · png"
           />
 
-          {/* handwritten identity labels */}
+          {}
           <div className="absolute inset-0 z-30 hidden lg:block" aria-hidden="true">
             {labels.map((label) => (
               <span
@@ -77,7 +74,7 @@ export default function About() {
           </div>
         </motion.div>
 
-        {/* ---------- Name ---------- */}
+        {}
         <motion.div
           variants={rise}
           initial="hidden"
@@ -87,8 +84,7 @@ export default function About() {
           className="relative z-20 lg:text-right"
         >
           <p className="eyebrow text-ink/70">Hey there, I&apos;m</p>
-          {/* Sized with utilities rather than .display-section — globals.css loads
-              after Tailwind, so the class's font-size would win over any override. */}
+          {}
           <h2 className="mt-4 font-display text-[clamp(3rem,5.5vw,5rem)] font-light leading-[0.9] tracking-[-0.035em] text-cream-50">
             AUTUMN
           </h2>
@@ -108,7 +104,7 @@ export default function About() {
           </svg>
         </motion.div>
 
-        {/* ---------- Copy ---------- */}
+        {}
         <motion.div
           variants={rise}
           initial="hidden"
@@ -129,7 +125,7 @@ export default function About() {
           </p>
         </motion.div>
 
-        {/* ---------- Thinking / Building ---------- */}
+        {}
         <motion.div
           variants={rise}
           initial="hidden"

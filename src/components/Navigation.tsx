@@ -38,7 +38,7 @@ export default function Navigation() {
       }}
     >
       <div className="mx-auto flex max-w-[1600px] items-start justify-between px-5 pt-5 pb-3 md:px-10 md:pt-6 md:pb-4">
-        {/* Monogram */}
+        {}
         <Link href="/" className="group relative shrink-0" aria-label="Autumn Joyner — home">
           <span className="fashion block text-[1.9rem] leading-none text-ink md:text-[2.3rem]">
             AJ
@@ -48,7 +48,7 @@ export default function Navigation() {
           </span>
         </Link>
 
-        {/* Desktop pills */}
+        {}
         <div className="hidden items-center gap-1.5 md:flex">
           {navItems.map((item) => (
             <Link key={item.href} href={item.href} className="pill pill-solid">
@@ -57,7 +57,7 @@ export default function Navigation() {
           ))}
         </div>
 
-        {/* Mobile trigger */}
+        {}
         <button
           onClick={() => setIsOpen((v) => !v)}
           className="pill pill-solid md:hidden"
@@ -68,7 +68,7 @@ export default function Navigation() {
         </button>
       </div>
 
-      {/* Mobile panel — torn paper sheet, not a dropdown bar */}
+      {}
       <AnimatePresence>
         {isOpen && (
           <motion.div

@@ -17,7 +17,6 @@ const rise = {
   }),
 }
 
-// Small per-cell drop so the grid reads as pinned up, not strictly gridded
 const reelOffsets = ['0px', '18px']
 const carouselOffsets = ['12px', '0px', '20px']
 const postNotes = { carousel: 'click through', reel: 'press play' }
@@ -25,9 +24,7 @@ const postNotes = { carousel: 'click through', reel: 'press play' }
 export default function CreativeWorkSection() {
   return (
     <section id="projects">
-      {/* ================================================================
-          WEBSITES — cream background
-          ================================================================ */}
+      {}
       <div
         id="websites"
         className="relative"
@@ -45,7 +42,7 @@ export default function CreativeWorkSection() {
             className="grid items-start grid-cols-1 md:grid-cols-2 lg:grid-cols-[0.8fr_1.5fr_1.5fr]"
             style={{ gap: '48px' }}
           >
-            {/* Left editorial intro column */}
+            {}
             <motion.div
               variants={rise}
               initial="hidden"
@@ -96,7 +93,7 @@ export default function CreativeWorkSection() {
               </p>
             </motion.div>
 
-            {/* Monitors */}
+            {}
             {webProjects.map((project, i) => (
               <motion.div
                 key={project.projectName}
@@ -108,7 +105,7 @@ export default function CreativeWorkSection() {
                 className="relative"
                 style={{ maxWidth: '480px', width: '100%', justifySelf: 'center' }}
               >
-                {/* "hover to scroll through" annotation — single line above Perfect Pointe */}
+                {}
                 {i === 0 && (
                   <div
                     className="absolute hidden md:flex items-center gap-1.5 pointer-events-none whitespace-nowrap"
@@ -155,7 +152,7 @@ export default function CreativeWorkSection() {
                   scrollOnHover={project.scrollOnHover}
                 />
 
-                {/* Strategy note clipped to top-right of the last monitor */}
+                {}
                 {i === webProjects.length - 1 && (
                   <div
                     className="absolute hidden md:block pointer-events-none"
@@ -167,7 +164,7 @@ export default function CreativeWorkSection() {
                       zIndex: 30,
                     }}
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    {}
                     <img
                       src="/images/scrapbook/mininote.png"
                       alt="strategy meets creativity, meets results."
@@ -181,9 +178,7 @@ export default function CreativeWorkSection() {
           </div>
         </div>
       </div>
-      {/* ================================================================
-          TORN PAPER DIVIDER — subtle irregular edge, cream over sage
-          ================================================================ */}
+      {}
       <div className="relative z-10 -mb-[1px]" aria-hidden="true">
         <svg
           viewBox="0 0 1440 28"
@@ -207,9 +202,7 @@ export default function CreativeWorkSection() {
         </svg>
       </div>
 
-      {/* ================================================================
-          SOCIAL / CAROUSELS — sage background
-          ================================================================ */}
+      {}
       <div
         id="social"
         className="relative"
@@ -222,7 +215,7 @@ export default function CreativeWorkSection() {
           className="mx-auto px-5 md:px-8 lg:px-10"
           style={{ maxWidth: 'min(94%, 1600px)', paddingTop: '65px', paddingBottom: '65px' }}
         >
-          {/* Heading row — plain */}
+          {}
           <motion.div
             variants={rise}
             initial="hidden"
@@ -336,7 +329,7 @@ export default function CreativeWorkSection() {
                 custom={3}
                 className="flex h-full items-center justify-center"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
+                {}
                 <img
                   src="/images/scrapbook/note.png"
                   alt="A few of my favorite carousels and reels I've designed for brands and clients. Content that connects and converts."
@@ -351,7 +344,7 @@ export default function CreativeWorkSection() {
 
             return (
               <div className="space-y-14">
-                {/* TOP ROW: 2 reels + sticky note */}
+                {}
                 <div
                   className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-start"
                   style={{ columnGap: '32px', rowGap: '48px' }}
@@ -368,7 +361,7 @@ export default function CreativeWorkSection() {
                   <StickyNote />
                 </div>
 
-                {/* BOTTOM ROW: 3 carousels */}
+                {}
                 <div
                   className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-start"
                   style={{ columnGap: '32px', rowGap: '48px' }}
